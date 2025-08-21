@@ -4,11 +4,24 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from "@/components/ui/toaster"
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 
 export const metadata: Metadata = {
   title: 'Cosmic Canvas',
   description: 'Explore the universe, one day at a time.',
 };
+
+const bodyFont = Inter({
+  subsets: ['latin'],
+  variable: '--font-body',
+});
+
+const headlineFont = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['700', '800'],
+  variable: '--font-headline',
+});
+
 
 export default function RootLayout({
   children,
@@ -18,11 +31,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased">
+      <body className={`${bodyFont.variable} ${headlineFont.variable} font-body antialiased`}>
         <ThemeProvider>
           <div className="relative flex min-h-dvh flex-col bg-background">
             <Header />

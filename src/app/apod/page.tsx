@@ -16,7 +16,7 @@ export default async function ApodPage({ searchParams }: { searchParams: { [key:
   }
 
   return (
-    <div className="w-full bg-gradient-to-b from-background to-indigo-950/50 flex-1 flex flex-col">
+    <div className="w-full bg-background flex-1 flex flex-col">
       {apodData ? (
         <ApodCard initialApodData={apodData} />
       ) : (

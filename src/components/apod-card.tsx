@@ -105,13 +105,13 @@ export function ApodCard({ initialApodData }: ApodCardProps) {
   return (
     <div className="container mx-auto max-w-4xl px-4 py-8">
       <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between mb-8">
-        <h2 className="text-xl font-semibold text-center sm:text-left font-headline">
+        <h2 className="text-xl font-semibold text-center sm:text-left font-headline text-foreground">
           Picture of the Day for {isFetchingNewDate ? '...' : displayDate}
         </h2>
         <DatePicker date={date} setDate={handleDateChange} />
       </div>
       
-      <Card className="w-full overflow-hidden border-border bg-card/50 backdrop-blur-sm transition-all duration-500">
+      <Card className="w-full overflow-hidden border-border bg-card/80 backdrop-blur-sm transition-all duration-500">
           <CardHeader>
             {isFetchingNewDate ? <Skeleton className="h-8 w-3/4 mb-2" /> : <CardTitle className="font-headline text-3xl text-primary">{title}</CardTitle>}
             {isFetchingNewDate ? <Skeleton className="h-4 w-1/2" /> : (copyright && <CardDescription>Image Credit & Copyright: {copyright}</CardDescription>)}
