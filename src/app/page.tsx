@@ -8,10 +8,6 @@ export default function LandingPage() {
     <div className="flex-1 flex flex-col">
       <div className="flex-1 flex items-center justify-center text-center px-4">
         <div className="relative max-w-3xl">
-          {/* Background Glow */}
-          <div className="absolute -top-20 -left-40 w-[400px] h-[400px] bg-primary/20 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
-          <div className="absolute -bottom-20 -right-40 w-[400px] h-[400px] bg-accent/20 rounded-full filter blur-3xl opacity-30 animate-pulse delay-2000"></div>
-
           <div className="relative z-10">
             <h1 className="text-5xl md:text-7xl font-bold font-headline pb-4 text-foreground">
               Explore the Universe
