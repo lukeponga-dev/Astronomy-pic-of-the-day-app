@@ -9,9 +9,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-5xl items-center justify-between">
-        <Link href="/">
+        <Link href="/" className="flex flex-col leading-none">
           <h1 className="font-headline text-2xl font-bold tracking-tighter text-foreground sm:text-3xl">
-            Cosmic Canvas
+            Cosmic
+          </h1>
+          <h1 className="font-headline text-2xl font-bold tracking-tighter text-foreground sm:text-3xl">
+            Canvas
           </h1>
         </Link>
         <div className="flex items-center gap-2">
