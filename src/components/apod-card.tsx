@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -118,10 +119,10 @@ export function ApodCard({ initialApodData }: ApodCardProps) {
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
-              {isFetchingNewDate ? (
-                <Skeleton className="aspect-video w-full" />
-              ) : media_type === 'image' ? (
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+                {isFetchingNewDate ? (
+                  <Skeleton className="h-full w-full" />
+                ) : media_type === 'image' ? (
                   <Image
                     src={url}
                     alt={title}
@@ -129,19 +130,17 @@ export function ApodCard({ initialApodData }: ApodCardProps) {
                     className="object-contain"
                     data-ai-hint="space nebula"
                   />
-                </div>
-              ) : (
-                <div className="aspect-video w-full">
+                ) : (
                   <iframe
                     src={url}
                     title={title}
                     frameBorder="0"
                     allow="encrypted-media"
                     allowFullScreen
-                    className="h-full w-full rounded-lg"
+                    className="h-full w-full"
                   />
-                </div>
-              )}
+                )}
+              </div>
               
               {isFetchingNewDate ? (
                 <div className="space-y-2">
