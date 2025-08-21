@@ -7,7 +7,7 @@ import { Footer } from '@/components/footer';
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 
 export const metadata: Metadata = {
-  title: 'Cosmic Canvas',
+  title: 'NASA’s Astronomy Picture of the Day',
   description: 'Explore the universe, one day at a time.',
 };
 

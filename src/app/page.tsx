@@ -10,7 +10,7 @@ export default function LandingPage() {
         <div className="relative max-w-3xl">
           <div className="relative z-10">
             <h1 className="text-5xl md:text-7xl font-bold font-headline pb-4 text-foreground">
-              Explore the Universe
+              NASA’s Astronomy Picture of the Day
             </h1>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">
               Journey through the cosmos with stunning images and expert explanations from NASA's Astronomy Picture of the Day.

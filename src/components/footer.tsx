@@ -16,7 +16,7 @@ export function Footer() {
         <ThemeToggle />
         <div className="text-center">
           <p>
-            &copy; {year} Cosmic Canvas. All rights reserved.
+            &copy; {year} NASA’s Astronomy Picture of the Day. All rights reserved.
           </p>
           <p className="mt-1">
             Powered by NASA's APOD API.
