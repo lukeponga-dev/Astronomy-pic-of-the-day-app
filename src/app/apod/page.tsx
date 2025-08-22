@@ -3,7 +3,7 @@ import { getApod } from '@/lib/nasa';
 import { ApodCard } from '@/components/apod-card';
 import { parseISO } from 'date-fns';
 
-export default async function ApodPage({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
+export default async function ApodPage({ searchParams }: { searchParams: { date?: string } }) {
   let apodData;
   let error = null;
   const dateStr = searchParams?.date;
