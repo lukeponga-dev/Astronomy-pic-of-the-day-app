@@ -1,6 +1,6 @@
 'use server';
 
-import { getApod } from '@/lib/nasa';
+import { getApod } from '@/services/nasa';
 import { type ApodData } from '@/lib/types';
 
 export async function getApodAction(date: Date): Promise<{data: ApodData | null, error: string | null}> {

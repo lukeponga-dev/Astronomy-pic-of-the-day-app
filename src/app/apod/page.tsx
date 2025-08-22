@@ -1,5 +1,5 @@
 
-import { getApod } from '@/lib/nasa';
+import { getApod } from '@/services/nasa';
 import { ApodCard } from '@/components/apod-card';
 import { parseISO } from 'date-fns';
 

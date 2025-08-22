@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { getRecentApods } from '@/lib/nasa';
+import { getRecentApods } from '@/services/nasa';
 import { ApodData } from '@/lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
