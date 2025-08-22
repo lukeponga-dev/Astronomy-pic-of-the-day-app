@@ -4,7 +4,10 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from "@/components/ui/toaster"
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
+import { Inter } from 'next/font/google';
+import '@fontsource/plus-jakarta-sans/700.css';
+import '@fontsource/plus-jakarta-sans/800.css';
+
 
 export const metadata: Metadata = {
   title: 'NASA’s Astronomy Picture of the Day',
@@ -16,11 +19,10 @@ const bodyFont = Inter({
   variable: '--font-body',
 });
 
-const headlineFont = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['700', '800'],
-  variable: '--font-headline',
-});
+const headlineFont = {
+    variable: '--font-headline',
+    className: 'font-headline'
+};
 
 
 export default function RootLayout({
@@ -32,7 +34,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
       </head>
-      <body className={`${bodyFont.variable} ${headlineFont.variable} font-body antialiased`}>
+      <body className={`${bodyFont.variable} ${headlineFont.className} font-body antialiased`}>
         <ThemeProvider>
           <div className="relative flex min-h-dvh flex-col bg-background">
             <Header />
