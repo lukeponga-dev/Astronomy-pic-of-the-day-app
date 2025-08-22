@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "daily-space-images",
     "source": ".",
     "ignore": [
       "firebase.json",
