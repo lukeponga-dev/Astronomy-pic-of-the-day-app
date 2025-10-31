@@ -24,8 +24,21 @@ function GallerySkeleton() {
     )
 }
 
+// Set up a Suspense boundary for the gallery
+export default function GalleryPage() {
+    return (
+        <div className="container mx-auto px-4 py-8">
+            <h1 className="text-3xl font-bold font-headline mb-8 text-center">
+                Recent Cosmic Images
+            </h1>
+            <React.Suspense fallback={<GallerySkeleton />}>
+                <GalleryGrid />
+            </React.Suspense>
+        </div>
+    );
+}
 
-export default async function GalleryPage() {
+async function GalleryGrid() {
   let recentApods: ApodData[] = [];
   let error = null;
 
@@ -35,13 +48,9 @@ export default async function GalleryPage() {
     error = e.message || 'An unknown error occurred.';
   }
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold font-headline mb-8 text-center">
-        Recent Cosmic Images
-      </h1>
-      {error ? (
-         <div className="flex-1 flex items-center justify-center p-4">
+  if (error) {
+    return (
+        <div className="flex-1 flex items-center justify-center p-4">
             <div className="container mx-auto max-w-2xl text-center">
                 <div className="bg-destructive/80 backdrop-blur-sm border border-destructive p-6 rounded-lg text-destructive-foreground">
                     <h2 className="text-xl font-bold font-headline">Oops, a cosmic anomaly!</h2>
@@ -49,28 +58,31 @@ export default async function GalleryPage() {
                 </div>
             </div>
         </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {recentApods.filter(apod => apod.media_type === 'image').map((apod) => (
-            <Link href={`/apod?date=${apod.date}`} key={apod.date}>
-                <Card className="overflow-hidden hover:shadow-lg hover:border-primary transition-all duration-300 h-full flex flex-col">
-                    <CardContent className="p-0 aspect-square relative flex-grow">
-                        <Image
-                            src={apod.url}
-                            alt={apod.title}
-                            fill
-                            className="object-cover"
-                            data-ai-hint="galaxy stars"
-                        />
-                    </CardContent>
-                    <CardFooter className="p-4">
-                        <h3 className="font-semibold text-sm truncate" title={apod.title}>{apod.title}</h3>
-                    </CardFooter>
-                </Card>
-            </Link>
-        ))}
-        </div>
-      )}
+    );
+  }
+
+  const imageApods = recentApods.filter(apod => apod.media_type === 'image');
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {imageApods.map((apod) => (
+        <Link href={`/apod?date=${apod.date}`} key={apod.date}>
+            <Card className="overflow-hidden hover:shadow-lg hover:border-primary transition-all duration-300 h-full flex flex-col">
+                <CardContent className="p-0 aspect-square relative flex-grow">
+                    <Image
+                        src={apod.url}
+                        alt={apod.title}
+                        fill
+                        className="object-cover"
+                        data-ai-hint="galaxy stars"
+                    />
+                </CardContent>
+                <CardFooter className="p-4">
+                    <h3 className="font-semibold text-sm truncate" title={apod.title}>{apod.title}</h3>
+                </CardFooter>
+            </Card>
+        </Link>
+    ))}
     </div>
   );
 }
