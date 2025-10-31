@@ -1,6 +1,6 @@
 
 import Link from 'next/link';
-import { GalleryVerticalEnd, Home, Image } from 'lucide-react';
+import { GalleryVerticalEnd, Image } from 'lucide-react';
 import { SurpriseMeButton } from './surprise-me-button';
 import { NavLink } from './nav-link';
 
@@ -33,9 +33,9 @@ export function Header() {
             <Image />
             <span className="hidden sm:inline">Today's Picture</span>
           </NavLink>
-          <NavLink href="/gallery">
+          <NavLink href="/apod-gallery">
             <GalleryVerticalEnd />
-            <span className="hidden sm:inline">Gallery</span>
+            <span className="hidden sm:inline">APOD Gallery</span>
           </NavLink>
           <SurpriseMeButton />
         </div>
