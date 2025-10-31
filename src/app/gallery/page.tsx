@@ -50,28 +50,26 @@ export default async function GalleryPage() {
             </div>
         </div>
       ) : (
-        <React.Suspense fallback={<GallerySkeleton />}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {recentApods.filter(apod => apod.media_type === 'image').map((apod) => (
-                <Link href={`/apod?date=${apod.date}`} key={apod.date}>
-                    <Card className="overflow-hidden hover:shadow-lg hover:border-primary transition-all duration-300 h-full flex flex-col">
-                        <CardContent className="p-0 aspect-square relative flex-grow">
-                            <Image
-                                src={apod.url}
-                                alt={apod.title}
-                                fill
-                                className="object-cover"
-                                data-ai-hint="galaxy stars"
-                            />
-                        </CardContent>
-                        <CardFooter className="p-4">
-                            <h3 className="font-semibold text-sm truncate" title={apod.title}>{apod.title}</h3>
-                        </CardFooter>
-                    </Card>
-                </Link>
-            ))}
-            </div>
-        </React.Suspense>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {recentApods.filter(apod => apod.media_type === 'image').map((apod) => (
+            <Link href={`/apod?date=${apod.date}`} key={apod.date}>
+                <Card className="overflow-hidden hover:shadow-lg hover:border-primary transition-all duration-300 h-full flex flex-col">
+                    <CardContent className="p-0 aspect-square relative flex-grow">
+                        <Image
+                            src={apod.url}
+                            alt={apod.title}
+                            fill
+                            className="object-cover"
+                            data-ai-hint="galaxy stars"
+                        />
+                    </CardContent>
+                    <CardFooter className="p-4">
+                        <h3 className="font-semibold text-sm truncate" title={apod.title}>{apod.title}</h3>
+                    </CardFooter>
+                </Card>
+            </Link>
+        ))}
+        </div>
       )}
     </div>
   );
