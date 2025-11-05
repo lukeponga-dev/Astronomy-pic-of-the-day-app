@@ -37,12 +37,6 @@ const prompt = ai.definePrompt({
   input: {schema: GenerateApodDescriptionInputSchema},
   output: {schema: GenerateApodDescriptionOutputSchema},
   prompt: `You are an expert astronomy educator. Your task is to generate a concise and informative description of an Astronomy Picture of the Day (APOD) image, given its URL and title.\n\n  Title: {{{title}}}\n  Image URL: {{media url=imageUrl}}\n\n  Description:`,
-  config: {
-    cache: {
-        // Cache results for 1 hour to avoid excessive calls for the same image.
-        ttl: 3600,
-    }
-  }
 });
 
 const generateApodDescriptionFlow = ai.defineFlow(

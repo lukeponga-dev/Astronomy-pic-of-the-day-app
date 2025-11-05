@@ -38,12 +38,6 @@ const prompt = ai.definePrompt({
   input: {schema: GenerateApodExplanationELI5InputSchema},
   output: {schema: GenerateApodExplanationELI5OutputSchema},
   prompt: `You are a friendly and enthusiastic science teacher who loves explaining complex space topics to young children. Your task is to explain an astronomy picture in a very simple and fun way, as if you were talking to a five-year-old. Use simple words, short sentences, and fun analogies.\n\n  Title: {{{title}}}\n  Image: {{media url=imageUrl}}\n\n  Simple Explanation:`,
-  config: {
-    cache: {
-        // Cache results for 1 hour to avoid excessive calls for the same image.
-        ttl: 3600,
-    }
-  }
 });
 
 const generateApodExplanationELI5Flow = ai.defineFlow(
