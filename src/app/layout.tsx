@@ -4,17 +4,15 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from "@/components/ui/toaster"
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
-import { Inter } from 'next/font/google';
-import '@fontsource/plus-jakarta-sans/700.css';
-import '@fontsource/plus-jakarta-sans/800.css';
-
+import { Space_Grotesk } from 'next/font/google';
+import '@fontsource/space-grotesk/700.css';
 
 export const metadata: Metadata = {
-  title: 'NASA’s Astronomy Picture of the Day',
-  description: 'Explore the universe, one day at a time.',
+  title: 'Cosmic Canvas: NASA’s Astronomy Picture of the Day',
+  description: 'Explore the universe, one day at a time, with Cosmic Canvas.',
 };
 
-const bodyFont = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-body',
 });
@@ -34,7 +32,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
       </head>
-      <body className={`${bodyFont.variable} ${headlineFont.className} font-body antialiased`}>
+      <body className={`${spaceGrotesk.variable} ${headlineFont.className} font-body antialiased`}>
         <ThemeProvider>
           <div className="relative flex min-h-dvh flex-col bg-background">
             <Header />

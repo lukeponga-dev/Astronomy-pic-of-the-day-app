@@ -25,18 +25,17 @@ export function Footer() {
               strokeLinejoin="round"
               className="h-5 w-5 text-primary"
             >
-              <path d="m3 2 2.1 2.1" />
-              <path d="M13 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
-              <path d="m2.1 21.9 2.1-2.1" />
-              <path d="M18 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
-              <path d="m21.9 2.1-2.1 2.1" />
-              <path d="M9 2a7 7 0 0 1 10 10" />
+              <path d="M12 2a10 10 0 1 0 10 10 10 10 0 0 0-10-10z" />
+              <path d="m3.5 10 2.3 2.3" />
+              <path d="m10 3.5 2.3 2.3" />
+              <path d="M14.5 10h-5" />
+              <path d="m14.5 14.5-5-5" />
             </svg>
             <span className="font-headline text-base font-bold text-foreground">Cosmic<span className="text-primary">Canvas</span></span>
         </div>
         <div className="text-center sm:text-left">
           <p>
-            &copy; {year} NASA’s Astronomy Picture of the Day. All rights reserved.
+            &copy; {year} Cosmic Canvas. All rights reserved.
           </p>
           <p className="mt-1">
             Powered by NASA's APOD API.

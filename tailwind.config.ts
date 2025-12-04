@@ -11,7 +11,7 @@ export default {
     extend: {
       fontFamily: {
         body: ['var(--font-body)', 'sans-serif'],
-        headline: ['"Plus Jakarta Sans"', 'var(--font-headline)', 'sans-serif'],
+        headline: ['var(--font-body)', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
