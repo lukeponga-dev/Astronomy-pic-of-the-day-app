@@ -1,20 +1,12 @@
-'use server';
-
-/**
- * @fileOverview This file defines a Genkit flow for generating AI-powered descriptions of NASA's Astronomy Picture of the Day (APOD).
- *
- * - generateApodDescription - A function that takes an image URL and title and returns an AI-generated description.
- * - GenerateApodDescriptionInput - The input type for the generateApodDescription function.
- * - GenerateApodDescriptionOutput - The return type for the generateApodDescription function.
- */
-
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import {ai} from 'genkit';
+import {z} from 'zod';
+import {googleAI} from '@genkit-ai/googleai';
 
 const GenerateApodDescriptionInputSchema = z.object({
-  imageUrl: z.string().describe('URL of the APOD image.'),
-  title: z.string().describe('Title of the APOD image.'),
+  imageUrl: z.string().describe('The URL of the APOD image.'),
+  title: z.string().describe('The title of the APOD image.'),
 });
+
 export type GenerateApodDescriptionInput = z.infer<
   typeof GenerateApodDescriptionInputSchema
 >;
@@ -22,22 +14,10 @@ export type GenerateApodDescriptionInput = z.infer<
 const GenerateApodDescriptionOutputSchema = z.object({
   description: z.string().describe('AI-generated description of the APOD image.'),
 });
+
 export type GenerateApodDescriptionOutput = z.infer<
   typeof GenerateApodDescriptionOutputSchema
 >;
-
-export async function generateApodDescription(
-  input: GenerateApodDescriptionInput
-): Promise<GenerateApodDescriptionOutput> {
-  return generateApodDescriptionFlow(input);
-}
-
-const prompt = ai.definePrompt({
-  name: 'apodDescriptionPrompt',
-  input: {schema: GenerateApodDescriptionInputSchema},
-  output: {schema: GenerateApodDescriptionOutputSchema},
-  prompt: `You are an expert astronomy educator. Your task is to generate a concise and informative description of an Astronomy Picture of the Day (APOD) image, given its URL and title.\n\n  Title: {{{title}}}\n  Image URL: {{media url=imageUrl}}\n\n  Description:`,
-});
 
 const generateApodDescriptionFlow = ai.defineFlow(
   {
@@ -46,7 +26,25 @@ const generateApodDescriptionFlow = ai.defineFlow(
     outputSchema: GenerateApodDescriptionOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
+    const {output} = await ai.generate({
+      model: googleAI.geminiPro,
+      prompt: `Generate a description for the Astronomy Picture of the Day. 
+      The image title is: "${input.title}". 
+      The image URL is: ${input.imageUrl}.
+      The description should be engaging and informative, suitable for a general audience. 
+      Focus on explaining the celestial object or phenomenon depicted, its significance, and any interesting facts. 
+      Keep the description concise, around 150-200 words.`,
+      output: {
+        schema: GenerateApodDescriptionOutputSchema,
+        format: 'json',
+      },
+    });
     return output!;
   }
 );
+
+export async function generateApodDescription(
+  input: GenerateApodDescriptionInput
+): Promise<GenerateApodDescriptionOutput> {
+  return generateApodDescriptionFlow(input);
+}

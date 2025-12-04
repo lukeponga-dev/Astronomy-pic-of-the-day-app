@@ -1,6 +1,6 @@
 import {genkit, Plugin} from 'genkit';
 import {googleAI} from '@genkit-ai/googleai';
-import next from '@genkit-ai/next';
+import genkitNextPlugin from '@genkit-ai/next';
 
 export const ai: Plugin<{}> = genkit({
   plugins: [
@@ -8,10 +8,7 @@ export const ai: Plugin<{}> = genkit({
       apiVersion: 'v1beta',
       model: 'gemini-pro',
     }),
-    next({
-      // We don't specify a directory here, because we want to use the default
-      // directory, which is src/ai/generated-flows.
-    }),
+    genkitNextPlugin(),
   ],
   logLevel: 'debug',
   enableTracingAndMetrics: true,

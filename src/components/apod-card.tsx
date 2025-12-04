@@ -6,9 +6,7 @@ import { format, parseISO } from 'date-fns';
 import { Sparkles, Loader2, Info, Baby } from 'lucide-react';
 
 import { type ApodData } from '@/lib/types';
-import { getApodAction } from '@/app/actions';
-import { generateApodDescription } from '@/ai/flows/generate-apod-description';
-import { generateApodExplanationELI5 } from '@/ai/flows/generate-apod-explanation-eli5';
+import { getApodAction, generateApodDescriptionAction, generateApodExplanationELI5Action } from '@/app/actions';
 import { DatePicker } from '@/components/date-picker';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -59,10 +57,13 @@ export function ApodCard({ initialApodData }: ApodCardProps) {
     setGenerating('description');
     setAiDescription(null);
     try {
-      const result = await generateApodDescription({
-        imageUrl: apodData.url,
-        title: apodData.title,
-      });
+      const result = await generateApodDescriptionAction(
+        apodData.url,
+        apodData.title
+      );
+      if (result.error) {
+        throw new Error(result.error);
+      }
       setAiDescription(result.description);
     } catch (error) {
       console.error('Error generating AI description:', error);
@@ -80,10 +81,13 @@ export function ApodCard({ initialApodData }: ApodCardProps) {
     setGenerating('eli5');
     setAiELI5(null);
     try {
-      const result = await generateApodExplanationELI5({
-        imageUrl: apodData.url,
-        title: apodData.title,
-      });
+      const result = await generateApodExplanationELI5Action(
+        apodData.url,
+        apodData.title
+      );
+      if (result.error) {
+        throw new Error(result.error);
+      }
       setAiELI5(result.explanation);
     } catch (error) {
       console.error('Error generating ELI5 explanation:', error);

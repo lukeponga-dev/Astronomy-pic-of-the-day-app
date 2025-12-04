@@ -5,23 +5,24 @@ import { Toaster } from "@/components/ui/toaster"
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Space_Grotesk } from 'next/font/google';
-import '@fontsource/space-grotesk/700.css';
+// Removed @fontsource import as next/font/google will handle weights
 
 export const metadata: Metadata = {
   title: 'Cosmic Canvas: NASA’s Astronomy Picture of the Day',
   description: 'Explore the universe, one day at a time, with Cosmic Canvas.',
 };
 
-const spaceGrotesk = Space_Grotesk({
+const spaceGroteskBody = Space_Grotesk({
   subsets: ['latin'],
+  weight: ['400'], // Regular for body text
   variable: '--font-body',
 });
 
-const headlineFont = {
-    variable: '--font-headline',
-    className: 'font-headline'
-};
-
+const spaceGroteskHeadline = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['700'], // Bold for headlines
+  variable: '--font-headline',
+});
 
 export default function RootLayout({
   children,
@@ -32,7 +33,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
       </head>
-      <body className={`${spaceGrotesk.variable} ${headlineFont.className} font-body antialiased`}>
+      <body className={`${spaceGroteskBody.variable} ${spaceGroteskHeadline.variable} font-body font-headline antialiased`}>
         <ThemeProvider>
           <div className="relative flex min-h-dvh flex-col bg-background">
             <Header />

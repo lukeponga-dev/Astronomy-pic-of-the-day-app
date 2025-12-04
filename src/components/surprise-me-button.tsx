@@ -23,9 +23,12 @@ export function SurpriseMeButton() {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button variant="ghost" size="icon" onClick={handleSurpriseMe}>
-            <Wand2 className="h-5 w-5" />
-            <span className="sr-only">Surprise Me</span>
+          <Button
+            className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200"
+            onClick={handleSurpriseMe}
+          >
+            <Wand2 className="h-5 w-5 mr-2" />
+            Surprise Me
           </Button>
         </TooltipTrigger>
         <TooltipContent>
